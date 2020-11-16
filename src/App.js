@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Switch, Route} from 'react-router-dom';
+import Followers from './followers';
+import Home from './home';
+import RepoDetails from './repoDetails';
+import Repos from './repos';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {  }
+    }
+    render() { 
+        return (
+            <Switch>
+                <Route path="/repos/:username/:reponame" component={RepoDetails}/>
+                <Route exact path="/repos/:username" component={Repos}/>                
+                <Route path="/followers/:userId" component={Followers}/>
+                <Route path="/" component={Home}/>
+                
+            </Switch>
+        );
+    }
 }
-
+ 
 export default App;
